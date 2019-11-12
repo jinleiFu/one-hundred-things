@@ -1,0 +1,5 @@
+/**index.wxss**/
+
+.things {
+  padding: 20rpx;
+}
