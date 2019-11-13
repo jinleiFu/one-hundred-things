@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+  <style>
+    /*重置滚动条*/
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+      background-color: #F5F5F5;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #999;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: #F5F5F5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      user-select: none;
+      background-color: #f2f2f2;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    /*大屏*/
+    @media (min-width: 768px) {
+      .goal-tree-header-mobie {
+        display: none;
+      }
+
+      .goal-tree-vertical {
+        display: none;
+      }
+
+      /*goal-tree-header*/
+      .goal-tree-header {
+        height: 58px;
+        padding: 0 26px;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .goal-tree-header .nav-bar {
+        height: 32px;
+      }
+
+      .goal-tree-header .input-box {
+        width: 370px;
+        position: relative;
+        display: inline-block;
+        margin-right: 20px;
+      }
+
+      .goal-tree-header .search-box {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        top: 0;
+        right: 0;
+      }
+
+      .goal-tree-header .search-box img {
+        position: absolute;
+        top: 50%;
+        right: 5px;
+        transform: translateY(-50%);
+      }
+
+      .goal-tree-header .input-box input {
+        width: 100%;
+        height: 32px;
+        color: #707070;
+        outline: none;
+        border-radius: 8px;
+        padding: 0 30px 0 20px;
+        border: 1px solid #ccc;
+      }
+
+      /*goal-tree-vertical*/
+      #vertical-tree,
+      #iframe-tree,
+      #iframe-goal {
+        float: left;
+      }
+
+      #vertical-tree {
+        width: 10%;
+      }
+
+      .goal-tree-vertical {
+        height: calc(100% - 58px);
+      }
+
+      #iframe-tree,
+      #iframe-goal {
+        height: 100%;
+      }
+
+      #iframe-tree {
+        width: 56%;
+        padding: 0 6px;
+      }
+
+      #iframe-goal {
+        width: 33%;
+      }
+    }
+
+    /*goal-tree*/
+    .goal-tree li a {
+      display: block;
+      color: #707070;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .goal-tree li a:link,
+    .goal-tree li a:visited,
+    .goal-tree li a:hover,
+    .goal-tree li a:active {
+      text-decoration: none;
+    }
+
+    .goal-tree li a.actived {
+      font-weight: 700;
+      color: #2b8dd8;
+    }
+
+    /*goal-tree-horizontal*/
+    .goal-tree-horizontal li {
+      color: #707070;
+    }
+
+    .goal-tree-horizontal li .icon-box,
+    .goal-tree-horizontal li .text,
+    .goal-tree-horizontal li .leader {
+      height: 68px;
+      line-height: 68px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .goal-tree-horizontal li .icon-box {
+      width: 78px;
+      position: relative;
+    }
+
+    .goal-tree-horizontal li .icon-box .icon {
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      top: 50%;
+      cursor: pointer;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+
+    .goal-tree-horizontal li .icon-add {
+      background-image: url('./imgs/+icon.png');
+    }
+
+    .goal-tree-horizontal li .icon-minus {
+      background-image: url('./imgs/-icon.png');
+    }
+
+    .goal-tree-horizontal li .icon-off {
+      background-image: url('./imgs/off_icon.png');
+    }
+
+    .goal-tree-horizontal li .text {
+      width: calc(100% - 210px);
+      box-sizing: border-box;
+      padding: 0 15px;
+      background-color: #fff;
+    }
+
+    .goal-tree-horizontal li .leader {
+      width: 118px;
+      text-align: center;
+    }
+
+    .goal-tree-horizontal li ul {
+      display: none;
+    }
+
+    #horizontal-tree>li {
+      margin-top: 6px;
+      background: linear-gradient(#e9f2ff, #d9e5ff);
+    }
+
+    #horizontal-tree>li ul {
+      padding-left: 50px;
+    }
+
+    #horizontal-tree>li .icon-box .icon {
+      right: -15px;
+      transform: translateY(-50%);
+    }
+
+    #horizontal-tree>li>.item>.icon-box .icon {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /*vertical-tree*/
+    #vertical-tree .item {
+      height: 68px;
+      background: linear-gradient(#e9f2ff, #d9e5ff);
+    }
+
+    #vertical-tree li ul {
+      display: none;
+    }
+
+    #vertical-tree li .icon-add {
+      background-image: url('./imgs/+icon.png');
+    }
+
+    #vertical-tree li .icon-minus {
+      background-image: url('./imgs/-icon.png');
+    }
+
+    #vertical-tree li .icon-off {
+      background-image: url('./imgs/off_icon.png');
+    }
+
+    #vertical-tree li .icon {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+
+    #vertical-tree .item .icon {
+      display: inline-block;
+    }
+
+    #vertical-tree .item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    #vertical-tree .item .icon-box,
+    #vertical-tree .item .info {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #vertical-tree .item .icon-box {
+      left: 5px;
+    }
+
+    #vertical-tree .item .info {
+      width: calc(100% - 40px);
+      left: 36px;
+    }
+
+    #vertical-tree>li>ul>li .item {
+      background: linear-gradient(#fff, #ebebeb);
+    }
+
+    #vertical-tree>li>ul>li>ul>li .item {
+      background: linear-gradient(#fff, #f5f5f5);
+    }
+
+    /*小屏*/
+    @media (max-width: 768px) {
+      .goal-tree-header {
+        display: none;
+      }
+
+      .goal-tree-horizontal {
+        display: none;
+      }
+
+      #iframe-tree,
+      #iframe-goal {
+        width: 100%;
+      }
+
+      #iframe-tree {
+        height: 500px;
+      }
+
+      #iframe-goal {
+        height: 300px;
+      }
+    }
+
+    /*加载动画*/
+    /*
+    
+    .loading {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 0.25rem solid rgba(255, 255, 255, 0.2);
+      border-top-color: white;
+      animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+
+    @keyframes pulse {
+      50% {
+        background: white;
+      }
+    }
+    */
+
+
+
+
+    #loading-container,
+    .loading {
+      height: 100px;
+      width: 100px;
+      border-radius: 100%;
+    }
+
+
+    #loading-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .loading {
+      border: 2px solid transparent;
+      border-color: transparent #3ca8eb transparent #3ca8eb;
+      animation: rotate-loading 1.5s linear 0s infinite normal;
+      transform-origin: 50% 50%;
+    }
+
+    #loading-text {
+      animation: loading-text-opacity 2s linear 0s infinite normal;
+      color: #3ca8eb;
+      font-size: 10px;
+      font-weight: bold;
+      margin-top: 45px;
+      opacity: 0;
+      position: absolute;
+      text-align: center;
+      text-transform: uppercase;
+      top: 0;
+      width: 100px;
+    }
+
+    @keyframes rotate-loading {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes loading-text-opacity {
+      0% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+
+      100% {
+        opacity: 1
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="loading-container">
+    <div class="loading"></div>
+    <div id="loading-text">loading</div>
+  </div>
+
+
+  <nav class="navbar navbar-default goal-tree-header-mobie" style="margin-bottom: 0;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-1">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src="./imgs/logo.png" class="navbar-brand" style="width: 143px;height: 32px;margin-top:8px;padding: 0;">
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="navbar-form navbar-left" style="margin-top: 0;border:none;">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="搜索点我...">
+          </div>
+          <button class="btn btn-default">搜索</button>
+          <button class="btn btn-default">返回</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="goal-tree-header">
+    <img src="./imgs/logo.png" style="width: 143px;height: 32px;">
+    <div class="nav-bar">
+      <div class="input-box">
+        <input type="text" placeholder="搜索点我...">
+        <div class="search-box" style="cursor: pointer;">
+          <img src="./imgs/go_icon.png" style="width: 18px;height: 18px;">
+        </div>
+      </div>
+      <img src="./imgs/refresh_icon.png" id="change-menu" style="cursor: pointer;width: 32px;height: 32px;">
+    </div>
+    <img src="./imgs/back_icon.png" style="cursor: pointer;width: 32px;height: 32px;">
+  </div>
+
+  <div id="main" style="display: none;">
+    <div class="goal-tree goal-tree-horizontal">
+      <ul id="horizontal-tree"></ul>
+    </div>
+
+    <div class="goal-tree goal-tree-vertical">
+      <ul id="vertical-tree"></ul>
+      <iframe frameborder="0" id="iframe-tree" name="ifrme-tree"></iframe>
+      <iframe frameborder="0" id="iframe-goal"></iframe>
+    </div>
+  </div>
+
+
+
+  <script src="https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js"></script>
+  <script src="./mockdate.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "van-checkbox": "../../components/checkbox/index",
-    "van-icon": "../../components/icon/index"
-  }
-}
