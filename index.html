@@ -5,16 +5,27 @@
   <meta charset="UTF-8">
   <title>我们一起做的事</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
-
+  <!-- http://699pic.com/tupian-401406025.html -->
+  <label><input type="radio" name="progress" value="all" checked>全部</label>
+  <label><input type="radio" name="progress" value="completed">已完成</label>
+  <label><input type="radio" name="progress" value="incompleted">未完成</label>
   <ul id="things"></ul>
+  <audio src="./mp3/lovesong.mp3" id="music" preload></audio>
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js"></script>
-  <script src="./things.js"></script>
-  <script src="./index.js"></script>
+  <script src="./js/things.js"></script>
+  <script src="./js/index.js"></script>
+  <script type="text/javascript" src="./js/jweixin-1.4.0.js"></script>
+  <!-- 音乐控制脚本 -->
+  <script>
+    document.addEventListener("WeixinJSBridgeReady", function () {
+      document.getElementById('music').play()
+    }, false)
+  </script>
 </body>
 
 </html>
