@@ -9,15 +9,27 @@
 </head>
 
 <body>
-  <!-- http://699pic.com/tupian-401406025.html -->
-  <label><input type="radio" name="progress" value="all" checked>全部</label>
-  <label><input type="radio" name="progress" value="completed">已完成</label>
-  <label><input type="radio" name="progress" value="incompleted">未完成</label>
-  <ul id="things"></ul>
-  <audio src="./mp3/lovesong.mp3" id="music" preload></audio>
+
+
+  <div id="loading">
+    <div class="flex">
+      <div class="loader">
+      </div>
+    </div>
+  </div>
+
+  <img src="./imgs/love.png" class="bg" data-preload>
+  <div id="love-box">
+    <label><input type="radio" name="progress" value="all" checked><i></i><span>全部</span></label>
+    <label><input type="radio" name="progress" value="completed"><i></i><span>已完成</span></label>
+    <label><input type="radio" name="progress" value="incompleted"><i></i><span>未完成</span></label>
+    <ul id="things"></ul>
+  </div>
+  <audio src="./mp3/lovesong.mp3" id="music" data-preload></audio>
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js"></script>
   <script src="./js/things.js"></script>
+  <script src="./js/preloader.js"></script>
   <script src="./js/index.js"></script>
   <script type="text/javascript" src="./js/jweixin-1.4.0.js"></script>
   <!-- 音乐控制脚本 -->
