@@ -133,7 +133,7 @@ Mock.mock('http://getthings.com', {
       isCompleted: true
     },
     {
-      thing: '34.我想和你合作完成一件陶器🍶',
+      thing: '34.我想和你合作完成一件手模👐',
       isCompleted: false
     },
     {
@@ -237,7 +237,7 @@ Mock.mock('http://getthings.com', {
       isCompleted: false
     },
     {
-      thing: '60.我想和你穿过同一件衣服👔',
+      thing: '60.我想和你穿过同一件贴身的衣服👔',
       isCompleted: false
     },
     {
@@ -329,7 +329,7 @@ Mock.mock('http://getthings.com', {
       isCompleted: true
     },
     {
-      thing: '83.我想和你一起做一个爱的漂流瓶🥰',
+      thing: '83.我想和你在生病的时候陪着对方🙆',
       isCompleted: false
     },
     {
@@ -337,7 +337,7 @@ Mock.mock('http://getthings.com', {
       isCompleted: false
     },
     {
-      thing: '85.我想和你写一周的日记然后交换日记本📔',
+      thing: '85.我想和你在朋友面前大方的介绍彼此💁‍♂️',
       isCompleted: false
     },
     {
@@ -345,7 +345,7 @@ Mock.mock('http://getthings.com', {
       isCompleted: false
     },
     {
-      thing: '87.我想和你靠在我肩膀上睡觉😴',
+      thing: '87.我想抱着你在我肩膀上睡觉😴',
       isCompleted: true
     },
     {
@@ -373,11 +373,11 @@ Mock.mock('http://getthings.com', {
       isCompleted: false
     },
     {
-      thing: '94.我想和你在朋友面前大方的介绍彼此💁‍♂️',
+      thing: '94.我想和你写一周的日记然后交换日记本📔',
       isCompleted: false
     },
     {
-      thing: '95.我想和你在生病的时候陪着对方🙆',
+      thing: '95.我想和你一起做一个爱的漂流瓶🥰',
       isCompleted: false
     },
     {
