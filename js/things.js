@@ -38,7 +38,7 @@ Mock.mock('http://getthings.com', {
     },
     {
       thing: '10.我想和你找个地方喝喝茶聊聊天🍵',
-      isCompleted: false
+      isCompleted: true
     },
     {
       thing: '11.我想和你一起吃热气腾腾的火锅🍲',
@@ -54,7 +54,7 @@ Mock.mock('http://getthings.com', {
     },
     {
       thing: '14.我想和你一起去菜场买菜做饭🌽',
-      isCompleted: false
+      isCompleted: true
     },
     {
       thing: '15.我想和你一起为对方做一次早餐🍳',
@@ -62,7 +62,7 @@ Mock.mock('http://getthings.com', {
     },
     {
       thing: '16.我想和你一起洗碗收拾餐桌🥢',
-      isCompleted: false
+      isCompleted: true
     },
     {
       thing: '17.我想和你一起做顿大餐招待客人🍽',
@@ -238,7 +238,7 @@ Mock.mock('http://getthings.com', {
     },
     {
       thing: '60.我想和你穿过同一件贴身的衣服👔',
-      isCompleted: false
+      isCompleted: true
     },
     {
       thing: '61.我想和你跳一支舞💃',
@@ -338,7 +338,7 @@ Mock.mock('http://getthings.com', {
     },
     {
       thing: '85.我想和你在朋友面前大方的介绍彼此💁‍♂️',
-      isCompleted: false
+      isCompleted: true
     },
     {
       thing: '86.我想和你一起玩真心话大冒险🏆',
