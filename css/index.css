@@ -92,7 +92,8 @@ body {
   height: 100%;
 }
 body {
-  background: #ffd5d5;
+  /* background: #ffd5d5; */
+  background: #ffd5cd;
   /*font-weight: 700; */
 }
 #love-box {
@@ -106,6 +107,8 @@ body {
 }
 #things {
   padding-top: 10px;
+  font-weight: 300;
+  /* color: #ff8e6e; */
 }
 .bg {
   display: block;
